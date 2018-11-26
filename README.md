@@ -24,7 +24,7 @@ composer install
 cp .env.example .env
 ```
 
-.env
+参考下面格式修改 .env
 ```shell
 BOT_TOKEN=<Telegram bot token>
 OWNER_ID=<你的 Telegram id>
