@@ -37,6 +37,19 @@ php -S localhost:8080 -t public
 ```
 
 ## 使用
+发送消息
 ```
-curl -X GET http://<your_url>:<port>/api/send?msg=HelloWorld
+curl -X GET http://<your_url>:<port>/api/msg?text=HelloWorld
 ```
+
+发送图片
+```
+curl -X GET http://<your_url>:<port>/api/photo?url=https://i.loli.net/2018/12/07/5c0a36e08ec6d.jpg
+```
+
+路由说明
+
+|url 路径|参数（类型, 说明）|说明|
+| ------ | ------ | ------ |
+|api/msg |text(String，消息内容)|发送文字消息|
+|api/photo |url(String，发送的图片地址)|发送图片消息|
