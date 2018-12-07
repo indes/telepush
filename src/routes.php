@@ -31,7 +31,8 @@ $app->get("/ping", function (Request $request, Response $response, array $args) 
     return $response;
 });
 
-$app->get("/api/send", function (Request $request, Response $response, array $args) {
+
+$app->map(['GET', 'POST'], "/api/send", function (Request $request, Response $response, array $args) {
 
     $telegram = new Telegram(getenv('BOT_TOKEN'));
     if (getenv('PROXY')) {
@@ -43,10 +44,20 @@ $app->get("/api/send", function (Request $request, Response $response, array $ar
         );
     }
 
+    $parsedBody = $request->getParsedBody();
+
+    $text = $parsedBody["text"] ? $parsedBody["text"] : $request->getQueryParam("text");
+
     $result = Longman\TelegramBot\Request::sendMessage([
         'chat_id' => (int)getenv('OWNER_ID'),
-        'text' => $request->getQueryParam("msg")
+        'text' => $text
     ]);
-    $response->getBody()->write("ok");
-    return $response;
+
+
+    if ($result->isOk()) {
+        return $response->withJson(["ok" => true]);
+    } else {
+        return $response->withJson($result);
+    }
+
 });
