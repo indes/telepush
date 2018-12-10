@@ -3,6 +3,9 @@ root /srv/app/public
 gzip
 fastcgi / 127.0.0.1:9000 php
 
+rewrite {
+        to {path} {path}/ /index.php?{query}
+    }
 log stdout
 errors stdout
 on startup php-fpm
