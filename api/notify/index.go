@@ -9,8 +9,6 @@ import (
 )
 
 func Handler(w http.ResponseWriter, r *http.Request) {
-	fmt.Fprintf(w, "hello telepush\n")
-
 	params := r.URL.Query()
 	userId, _ := strconv.Atoi(params.Get("u"))
 	msg := params.Get("m")
@@ -21,5 +19,4 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 	}
 
 	fmt.Fprintf(w, "send message to %d succes!", userId)
-
 }
