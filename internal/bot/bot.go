@@ -4,6 +4,7 @@ import (
 	"errors"
 
 	"github.com/indes/telepush/internal/config"
+	_ "github.com/indes/telepush/internal/log"
 	"go.uber.org/zap"
 	tb "gopkg.in/tucnak/telebot.v2"
 )
